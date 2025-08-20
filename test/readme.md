@@ -11,7 +11,7 @@
 3. [Create Datagen Connectors](#create-datagen-connectors)
 4. [Configure your S3 bucket and Provider Integration](#configure-your-s3-bucket-and-provider-integration)  
 5. [Explore the Stream Lineage](#explore-the-stream-lineage)
-6. [Explore the Application](#explore-the-application)
+6. [Explore the Data](#explore-the-application)
 7. [Clean Up Resources After the Workshop](#clean-up-resources-after-the-workshop)
 
 
@@ -439,5 +439,15 @@ SELECT * FROM confluent_orders;
 
 These query results should update periodically when run again, showcasing that we are continuously writing data to our Iceberg tables.
 
-With Tableflow Catalog Integration, Tableflow acts as the catalog provider. Kafka topics are materialized as Iceberg tables stored in cloud storage (such as S3) and registered with Tableflow's built-in REST Catalog. Snowflake connects to this Tableflow REST Catalog as an external compute/query engine, using API credentials (API key and secret) generated within the Confluent Cloud Console. All metadata and table management remain under Tableflow’s control, and authentication is handled via Tableflow’s REST API keys—not Snowflake OAuth or native service connections. This approach is ideal when you want centralized catalog operations within Tableflow, while enabling Snowflake to query and analyze data without transferring catalog ownership.
+## Clean Up Resources After the Workshop
 
+Once you are done with the workshop, make sure to clean up your Confluent Cloud resources to avoid unnecessary charges.
+
+1. **Disable Tableflow**  
+   Stop any active Tableflow integrations.
+2. **Pause and Delete Connectors**  
+   Go to your **Connectors** tab in Confluent Cloud, pause running connectors, and delete them.
+3. **Delete the Kafka Cluster**  
+   Delete the Kafka cluster you created for this workshop.
+4. **Delete the Environment**  
+   Finally, remove the Confluent Cloud environment to ensure all associated resources are fully cleaned up.
