@@ -4,20 +4,16 @@
 
 <h1 align="center">Real-Time Data Streaming Application</h1>
 
-/Users/mohtasham/Downloads/tableflow_snowflake/test/
 ## Agenda
 
-1. [Log in to Confluent Cloud](#1-login-to-confluent-cloud)
-2. [Create Confluent Cloud Environment, Cluster and API Keys](#2-create-confluent-cloud-environment-cluster-and-api-keys)
-6. [Create Datagen Connector](#6-datagen-connector)
-7. [Enable Tableflow Integration](#7-enable-tableflow-integration)
-8. [Create or Update Properties Files](#8-create-or-update-properties-files)
-9. [Run the Application](#9-run-the-application)
-10. [Set Up Connectors](#10-set-up-connectors)
-11. [Run Flink Queries](#11-run-flink-queries)
-12. [Explore the Stream Lineage](#12-explore-the-stream-lineage)
-13. [Explore the Application](#13-explore-the-application)
-14. [Clean Up Resources After the Workshop](#14-clean-up-resources-after-the-workshop)
+1. [Log in to Confluent Cloud](#log-in-to-confluent-cloud)
+2. [Create Confluent Cloud Environment, Cluster and API Keys](#create-confluent-cloud-environment-cluster-and-api-keys)
+3. [Create Datagen Connectors](#create-datagen-connectors)
+4. [Configure your S3 bucket and Provider Integration](#configure-your-s3-bucket-and-provider-integration)  
+   - [Enable Tableflow Integration](#configure-your-s3-bucket-and-provider-integration)
+5. [Explore the Stream Lineage](#explore-the-stream-lineage)
+6. [Explore the Application](#explore-the-application)
+7. [Clean Up Resources After the Workshop](#clean-up-resources-after-the-workshop)
 
 
 ## Prerequisites
@@ -27,9 +23,6 @@ Before you begin, ensure you have the following installed on your system:
 - [Snowflake Account](https://app.snowflake.com/)
 
 ## Objective
-Once you have your Kafka topics created, you can now get started with Tableflow to sync your data from your Kafka topics into Snowflake Data Cloud.
-
-
 With Tableflow Catalog Integration, Tableflow acts as the catalog provider. Kafka topics are materialized as Iceberg tables stored in cloud storage (such as S3) and registered with Tableflow's built-in REST Catalog. Snowflake connects to this Tableflow REST Catalog as an external compute/query engine, using API credentials (API key and secret) generated within the Confluent Cloud Console. All metadata and table management remain under Tableflow’s control, and authentication is handled via Tableflow’s REST API keys—not Snowflake OAuth or native service connections. This approach is ideal when you want centralized catalog operations within Tableflow, while enabling Snowflake to query and analyze data without transferring catalog ownership.
 
 ## 1. Log in to Confluent Cloud
@@ -458,4 +451,5 @@ SELECT * FROM confluent_orders;
 
 These query results should update periodically when run again, showcasing that we are continuously writing data to our Iceberg tables.
 
+With Tableflow Catalog Integration, Tableflow acts as the catalog provider. Kafka topics are materialized as Iceberg tables stored in cloud storage (such as S3) and registered with Tableflow's built-in REST Catalog. Snowflake connects to this Tableflow REST Catalog as an external compute/query engine, using API credentials (API key and secret) generated within the Confluent Cloud Console. All metadata and table management remain under Tableflow’s control, and authentication is handled via Tableflow’s REST API keys—not Snowflake OAuth or native service connections. This approach is ideal when you want centralized catalog operations within Tableflow, while enabling Snowflake to query and analyze data without transferring catalog ownership.
 
