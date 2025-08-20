@@ -10,7 +10,6 @@
 2. [Create Confluent Cloud Environment, Cluster and API Keys](#create-confluent-cloud-environment-cluster-and-api-keys)
 3. [Create Datagen Connectors](#create-datagen-connectors)
 4. [Configure your S3 bucket and Provider Integration](#configure-your-s3-bucket-and-provider-integration)  
-   - [Enable Tableflow Integration](#configure-your-s3-bucket-and-provider-integration)
 5. [Explore the Stream Lineage](#explore-the-stream-lineage)
 6. [Explore the Application](#explore-the-application)
 7. [Clean Up Resources After the Workshop](#clean-up-resources-after-the-workshop)
@@ -25,7 +24,7 @@ Before you begin, ensure you have the following installed on your system:
 ## Objective
 With Tableflow Catalog Integration, Tableflow acts as the catalog provider. Kafka topics are materialized as Iceberg tables stored in cloud storage (such as S3) and registered with Tableflow's built-in REST Catalog. Snowflake connects to this Tableflow REST Catalog as an external compute/query engine, using API credentials (API key and secret) generated within the Confluent Cloud Console. All metadata and table management remain under Tableflow’s control, and authentication is handled via Tableflow’s REST API keys—not Snowflake OAuth or native service connections. This approach is ideal when you want centralized catalog operations within Tableflow, while enabling Snowflake to query and analyze data without transferring catalog ownership.
 
-## 1. Log in to Confluent Cloud
+## Log in to Confluent Cloud
 
 To get started, you'll need an active **Confluent Cloud** account.
 
@@ -35,7 +34,7 @@ To get started, you'll need an active **Confluent Cloud** account.
 
 Note : When you sign up for a Confluent Cloud account, you will get free credits to use in Confluent Cloud. This will cover the cost of resources created during the workshop.
 
-## 2. Create Confluent Cloud Environment, Cluster and API Keys
+## Create Confluent Cloud Environment, Cluster and API Keys
 
 1. Create a new **Environment** in [Confluent Cloud](https://confluent.cloud)
    ![Environment Creation](images/environment.png)
@@ -49,7 +48,7 @@ Note : When you sign up for a Confluent Cloud account, you will get free credits
 - Download the **API Key** and **Secret**, to update them in your `client.properties` file (All required values will be present in client.properties).
    ![API Key Values](images/api_keys_key_value.png)
 
-## 6. Create Datagen Connectors
+## Create Datagen Connectors
 
 1. Find the environment you created and select it from the list of Environments
 
@@ -76,7 +75,7 @@ writes User data to a Kafka topic called sample_data_orders.
 10. Verify that the subsequent Kafka topics have been created by navigating to the Topics menu on the left-hand navigation bar. You should see one topic called **sample_data_users**, and another called **sample_data_orders**, each with 6 partitions.
 ![alt text](images/cc_datagen_topics.png)
 
-## 7. Configure your S3 bucket and Provider Integration
+## Configure your S3 bucket and Provider Integration
 
 ### Configure your Amazon S3 Bucket
 
@@ -208,13 +207,6 @@ An external ID is used to grant access to your AWS resources (such as S3 buckets
 
     ![alt text](images/cc_integrations.png)
 
-
-
-
-
-
-
-
 ### Step 5: Enable Tableflow on Your Kafka Topic
 
 With the Provider Integration successfully configured, you can now enable Tableflow for your desired Kafka topics.
@@ -238,10 +230,6 @@ With the Provider Integration successfully configured, you can now enable Tablef
 8. In the next screen, review the details and then click **Launch**.
 
 9. You will now see *Tableflow* sync pending at the top of your topic information. This should transition to the *Syncing* status shortly.
-
-
-
-
 
 
 ### Query Iceberg Tables via Snowflake
